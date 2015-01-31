@@ -4,21 +4,17 @@
 	<title>Список дел</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script type="text/javascript">
-		function addTask (argument) {
-			var task = document.getElementById('task').value;
-			alert(task);		
-		}
-	</script>
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<div>
-<h1>Добавление нового дела</h1>
-	<textarea id="task"></textarea>
-	<button onclick="addTask()">Добавить</button>
-</div>
-<div>
-<h3>Дела</h3>
-</div>
+	<div>
+		<h1>Добавление нового дела</h1>
+		<textarea id="task"></textarea>
+		<button onclick="addTask()">Добавить</button>
+	</div>
+	<div>
+		<h3>Дела</h3>
+		<div id="list"></div>
+	</div>
 </body>
 </html>
