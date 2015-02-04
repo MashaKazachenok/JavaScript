@@ -23,11 +23,6 @@ function PutNum(val) {
 
  }   
 
-function PutNum(val) {
-    setValue((document.getElementById("okno").value + val) - 0);
-
-}
-
 function plus() {
     A = getValue("okno");
     setValue(0);
