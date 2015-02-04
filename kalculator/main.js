@@ -1,7 +1,7 @@
 
 
 var A, B, C;
-var action = " ";
+var action = "+";
 
 function getValue(id) {
     var res = document.getElementById(id).value - 0;
@@ -14,45 +14,45 @@ function getValue(id) {
 }
 
 function setValue(znash) {
-    document.getElementById("okno").value = 0;
+    document.getElementById("okno").value = znash;
    
 }
 
 function PutNum(val) {
-    document.getElementById("okno").value = document.getElementById("okno").value + val) - 0;
-
+    setValue((document.getElementById("okno").value + val) - 0);
+    
 }
 
 function plus() {
     A = getValue("okno");
-    setValue("okno");
+    setValue(0);
     action = "+";
 }
 
 function sub() {
     A = getValue("okno");
-    setValue("okno");
+    setValue(0);
     action = "-";
 }
 
 function mult() {
     A = getValue("okno");
-    setValue("okno");
+    setValue(0);
     action = "*";
 }
 
 function div() {
     A = getValue("okno");
-    setValue("okno");
+    setValue(0);
     action = "/";
 }
 
 function clr() {
-    setValue("okno");
+    setValue(0);
 }
 
 function otr() {
-    document.getElementById("okno").value = document.getElementById("okno").value * -1;
+    setValue(getValue("okno") * -1);
 }
 
 
@@ -78,7 +78,7 @@ function calculate() {
             break;
     }
 
-   document.getElementById("okno").value = C;
+   setValue(C);
 }
 
 window.onload = function () {
