@@ -45,6 +45,10 @@ function clr() {
     document.getElementById("okno").value = 0;
 }
 
+function otr() {
+    document.getElementById("okno").value = document.getElementById("okno").value * -1;
+}
+
 
 function calculate() {
     B = getValue("okno");
@@ -87,4 +91,5 @@ window.onload = function () {
     document.getElementById("mult").addEventListener("click", mult);
     document.getElementById("div").addEventListener("click", div);
     document.getElementById("clr").addEventListener("click", clr);
+    document.getElementById("otr").addEventListener("click", otr);
 }
