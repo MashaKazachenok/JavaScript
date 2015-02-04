@@ -20,11 +20,11 @@ function setValue(znash) {
 
 function PutNum(val) {
     setValue((document.getElementById("okno").value + val) - 0);
-    
+
+ }   
 
 function PutNum(val) {
-    document.getElementById("okno").value = (document.getElementById("okno").value + val) - 0;
-
+    setValue((document.getElementById("okno").value + val) - 0);
 
 }
 
@@ -42,7 +42,6 @@ function sub() {
 
 function mult() {
     A = getValue("okno");
-
     setValue(0);
     action = "*";
 }
@@ -55,7 +54,6 @@ function div() {
 
 function clr() {
     setValue(0);
-
 }
 
 function otr() {
@@ -86,7 +84,7 @@ function calculate() {
     }
 
    setValue(C);
-
+}
 window.onload = function () {
 
     for (var i = 0; i < 10; i++) {
