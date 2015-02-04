@@ -1,6 +1,7 @@
 
+
 var A, B, C;
-var action = "+";
+var action = " ";
 
 function getValue(id) {
     var res = document.getElementById(id).value - 0;
@@ -12,37 +13,42 @@ function getValue(id) {
     alert("В элементе " + id + " не численное значение!!!");
 }
 
+function setValue(znash) {
+    document.getElementById("okno").value = 0;
+   
+}
+
 function PutNum(val) {
-    document.getElementById("okno").value = (document.getElementById("okno").value + val) - 0;
+    document.getElementById("okno").value = document.getElementById("okno").value + val) - 0;
 
 }
 
 function plus() {
     A = getValue("okno");
-    document.getElementById("okno").value = 0;
+    setValue("okno");
     action = "+";
 }
 
 function sub() {
     A = getValue("okno");
-    document.getElementById("okno").value = 0;
+    setValue("okno");
     action = "-";
 }
 
 function mult() {
     A = getValue("okno");
-    document.getElementById("okno").value = 0;
+    setValue("okno");
     action = "*";
 }
 
 function div() {
     A = getValue("okno");
-    document.getElementById("okno").value = 0;
+    setValue("okno");
     action = "/";
 }
 
 function clr() {
-    document.getElementById("okno").value = 0;
+    setValue("okno");
 }
 
 function otr() {
@@ -72,7 +78,7 @@ function calculate() {
             break;
     }
 
-    document.getElementById("okno").value = C;
+   document.getElementById("okno").value = C;
 }
 
 window.onload = function () {
