@@ -1,5 +1,4 @@
 
-
 var A, B, C;
 var action = "+";
 
@@ -13,6 +12,7 @@ function getValue(id) {
     alert("В элементе " + id + " не численное значение!!!");
 }
 
+
 function setValue(znash) {
     document.getElementById("okno").value = znash;
    
@@ -21,6 +21,11 @@ function setValue(znash) {
 function PutNum(val) {
     setValue((document.getElementById("okno").value + val) - 0);
     
+
+function PutNum(val) {
+    document.getElementById("okno").value = (document.getElementById("okno").value + val) - 0;
+
+
 }
 
 function plus() {
@@ -37,6 +42,7 @@ function sub() {
 
 function mult() {
     A = getValue("okno");
+
     setValue(0);
     action = "*";
 }
@@ -49,6 +55,7 @@ function div() {
 
 function clr() {
     setValue(0);
+
 }
 
 function otr() {
@@ -79,7 +86,6 @@ function calculate() {
     }
 
    setValue(C);
-}
 
 window.onload = function () {
 
