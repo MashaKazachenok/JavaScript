@@ -9,14 +9,13 @@
 <body>
 	<div>
 		<h1>Добавление нового дела</h1>
-		<textarea id="task"></textarea>
-		<button onclick="addClickHandler()">Добавить</button>
-		<button onclick="clearClickHandler()">Очистить вывод</button>
-		<button onclick="displayClickHandler()">Отобразить</button>
+		
+		<input type="text" id="task" onkeydown="if(event.keyCode==13){addClickHandler();}">
 	</div>
 	<div>
 		<h3>Дела</h3>
-		<div id="list"></div>
+		<p><div id="list"></div></p>
+		 <div id = 'flag' style = 'display: none;'>Содержимое категории 1</div>
 	</div>
 </body>
 </html>

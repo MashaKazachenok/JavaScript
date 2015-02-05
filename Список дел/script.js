@@ -8,6 +8,7 @@ function getDescription () {
 function addClickHandler (argument) {
 	var description = getDescription();
 	tasks.push(description);
+	displayTasks(tasks);
 }
 
 function clearClickHandler (argument) {	
@@ -15,22 +16,20 @@ function clearClickHandler (argument) {
 	container.innerHTML = null;	
 }
 
-function displayClickHandler (argument) {
-	displayTasks(tasks);
+function del(event) {
+	var Ev = event.target.nodeName;
+	var Parent = event.target.parentNode;
+	var ParentParent = Parent.parentNode;
+	ParentParent.removeChild(event.target.parentNode);
 }
 
-function displayTasks (tasks) {
-	
-	
-	for( i=0; i< tasks.length; i++) 
-	{
-		 // создаем пустой параграф
-		var taskNode = document.createElement('p');
-		// добавим описание дела в парграф
-		taskNode.innerText = tasks[i];
-		// получаем контейнер списка дел
-		var container = document.getElementById('list');
-		// вставить параграф с описанием дела в контейнет списка дел
-		container.appendChild(taskNode);
-	}
+function displayTasks (tasks) {  
+		 
+	var container = document.getElementById('list');
+	var taskNode = document.createElement('p');
+	var container = document.getElementById('list');
+	var Del = '<input type="button" value="Del" onclick="del(event)">';
+	taskNode.innerHTML = '<input type="checkbox" id="flag">' + tasks[tasks.length-1] +"  " + Del;
+	container.appendChild(taskNode);
+	    
 }
