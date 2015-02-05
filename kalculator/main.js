@@ -2,26 +2,29 @@
 var A, B, C;
 var action = "+";
 
+function getInput()
+{
+    return document.getElementById("okno");
+}
+
 function getValue() {
-    var res = document.getElementById("okno").value - 0;
+    var res = getInput().value - 0;
 
     if (!isNaN(res)) {
         return res;
     }
 
-    alert("В элементе " + id + " не численное значение!!!");
+    alert("В поле ввода не численное значение!!!");
 }
 
 
 function setValue(znash) {
-  document.getElementById("okno").value = znash;
-
+  getInput().value = znash;
 }
 
 function PutNum(val) {
     var Zn = getValue();
     setValue((Zn.toString() + val) - 0);
-
  }   
 
 function plus() {
