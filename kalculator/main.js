@@ -2,8 +2,8 @@
 var A, B, C;
 var action = "+";
 
-function getValue(id) {
-    var res = document.getElementById(id).value - 0;
+function getValue() {
+    var res = document.getElementById("okno").value - 0;
 
     if (!isNaN(res)) {
         return res;
@@ -14,35 +14,36 @@ function getValue(id) {
 
 
 function setValue(znash) {
-    document.getElementById("okno").value = znash;
-   
+  document.getElementById("okno").value = znash;
+
 }
 
 function PutNum(val) {
-    setValue((document.getElementById("okno").value + val) - 0);
+    var Zn = getValue();
+    setValue((Zn.toString() + val) - 0);
 
  }   
 
 function plus() {
-    A = getValue("okno");
+    A = getValue();
     setValue(0);
     action = "+";
 }
 
 function sub() {
-    A = getValue("okno");
+    A = getValue();
     setValue(0);
     action = "-";
 }
 
 function mult() {
-    A = getValue("okno");
+    A = getValue();
     setValue(0);
     action = "*";
 }
 
 function div() {
-    A = getValue("okno");
+    A = getValue();
     setValue(0);
     action = "/";
 }
@@ -52,12 +53,12 @@ function clr() {
 }
 
 function otr() {
-    setValue(getValue("okno") * -1);
+    setValue(getValue() * -1);
 }
 
 
 function calculate() {
-    B = getValue("okno");
+    B = getValue();
 
     switch (action) {
         case "+":
