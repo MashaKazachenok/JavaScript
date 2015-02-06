@@ -22,15 +22,19 @@ function del(event) {
 	ParentParent.removeChild(event.target.parentNode);
 }
 
-function shrift() {
-	var a = document.getElementById("text");
-	var Fl = document.getElementById("flag");
-	if(Fl.checked) {
-	a.style.color = "grey";	
-	a.style.textDecoration= 'line-through';	
+function changeStatus(event) {
+	var task = event.target.parentNode;
+	var desription = task.children[1];
+	
+	var status = event.target;
+	
+	// TODO: don't change style attributes, use css classes
+	if(status.checked) {
+		desription.style.color = "grey";	
+		desription.style.textDecoration= 'line-through';	
 	} else {
-	a.style.color = "black";
-	a.style.textDecoration= '';			
+		desription.style.color = "black";
+		desription.style.textDecoration= '';			
 	}
 	
 }
