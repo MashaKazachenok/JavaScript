@@ -1,11 +1,7 @@
 var tasks = [];
 
-function getDescription() {
-	return document.getElementById('task').value;
-}
-
-function getContainer() {
-	return document.getElementById('list');
+function vvod() {
+	 if(event.keyCode==13){addClickHandler()};
 }
 
 function addClickHandler(argument) {
@@ -13,6 +9,19 @@ function addClickHandler(argument) {
 	tasks.push(description);
 	displayTasks(tasks);
 }
+
+function getDescription() {
+	var vvodDela = document.getElementById('task').value;
+	vvodDela.onkeydown = function(event) { if(event.keyCode==13){addClickHandler()};
+}
+	//vvodDela.addEventListener("onkeydown",vvod);
+	return vvodDela;
+}
+
+function getContainer() {
+	return document.getElementById('list');
+}
+
 
 function clearClickHandler(argument) {	
 	var container = getContainer();
@@ -48,7 +57,8 @@ function displayTasks(tasks) {
 
 	var changeStatusAction = document.createElement('input');
 	changeStatusAction.type = "checkbox";
-	changeStatusAction.onclick = changeStatus;
+	//changeStatusAction.onclick = changeStatus;
+    changeStatusAction.addEventListener("click",changeStatus);
 
 	var description = document.createElement('span');
 	description.innerHTML = taskDescription;
@@ -56,7 +66,8 @@ function displayTasks(tasks) {
 	var deleteAction = document.createElement('input');
 	deleteAction.type = "button";
 	deleteAction.value = "x";
-	deleteAction.onclick = del;
+	//deleteAction.onclick = del;
+	deleteAction.addEventListener("click",del);
 	
 	var task = document.createElement('p');	
 	task.appendChild(changeStatusAction);
