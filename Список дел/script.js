@@ -16,10 +16,9 @@ function clearClickHandler (argument) {
 }
 
 function del(event) {
-	var Ev = event.target.nodeName;
-	var Parent = event.target.parentNode;
-	var ParentParent = Parent.parentNode;
-	ParentParent.removeChild(event.target.parentNode);
+	var task = event.target.parentNode;
+	var container = task.parentNode;
+	container.removeChild(task);
 }
 
 function changeStatus(event) {
