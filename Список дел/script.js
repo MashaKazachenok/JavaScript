@@ -1,7 +1,7 @@
 var tasks = [];
 
 function vvod() {
-	 if(event.keyCode==13){addClickHandler()};
+	if(event.keyCode==13){addClickHandler()};
 }
 
 function addClickHandler(argument) {
@@ -12,8 +12,13 @@ function addClickHandler(argument) {
 
 function getDescription() {
 	var vvodDela = document.getElementById('task').value;
-	vvodDela.onkeydown = function(event) { if(event.keyCode==13){addClickHandler()};
-}
+	
+	vvodDela.onkeydown = function(event) { 
+		if (event.keyCode==13) {
+			addClickHandler()
+		};
+	}
+
 	//vvodDela.addEventListener("onkeydown",vvod);
 	return vvodDela;
 }
@@ -58,7 +63,7 @@ function displayTasks(tasks) {
 	var changeStatusAction = document.createElement('input');
 	changeStatusAction.type = "checkbox";
 	//changeStatusAction.onclick = changeStatus;
-    changeStatusAction.addEventListener("click",changeStatus);
+	changeStatusAction.addEventListener("click",changeStatus);
 
 	var description = document.createElement('span');
 	description.innerHTML = taskDescription;
