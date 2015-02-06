@@ -1,6 +1,5 @@
 var tasks = [];
 
-// получаем описание дела
 function getDescription () {
 	return document.getElementById('task').value;
 }
@@ -37,13 +36,27 @@ function shrift() {
 }
 
 function displayTasks (tasks) {  
-		 
+	
+	var taskDescription = tasks[tasks.length-1];
+
 	var container = document.getElementById('list');
-	var taskNode = document.createElement('p');
-	taskNode.id = "text";
-	var container = document.getElementById('list');
-	var Del = '<input type="button" value="x" onclick="del(event)">';
-	taskNode.innerHTML = '<input type="checkbox" id="flag" onclick="shrift()">' + tasks[tasks.length-1] +"    " + Del;
-	container.appendChild(taskNode);
-	    
+
+	var changeStatusAction = document.createElement('input');
+	changeStatusAction.type = "checkbox";
+	changeStatusAction.onclick=changeStatus;
+
+	var description = document.createElement('span');
+	description.innerHTML = taskDescription;
+
+	var deleteAction = document.createElement('input');
+	deleteAction.type = "button";
+	deleteAction.value = "x";
+	deleteAction.onclick=del;
+	
+	var task = document.createElement('p');	
+	task.appendChild(changeStatusAction);
+	task.appendChild(description);
+	task.appendChild(deleteAction);
+	
+	container.appendChild(task);	
 }
