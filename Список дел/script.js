@@ -11,7 +11,7 @@ function addClickHandler(argument) {
 }
 
 function getDescription() {
-	var vvodDela = document.getElementById('task').value;
+	return getInput().value;
 	
 	vvodDela.onkeydown = function(event) { 
 		if (event.keyCode==13) {
@@ -21,6 +21,10 @@ function getDescription() {
 
 	//vvodDela.addEventListener("onkeydown",vvod);
 	return vvodDela;
+}
+
+function getInput() {
+	return document.getElementById('task');
 }
 
 function getContainer() {
