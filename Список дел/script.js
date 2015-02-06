@@ -1,17 +1,21 @@
 var tasks = [];
 
-function getDescription () {
+function getDescription() {
 	return document.getElementById('task').value;
 }
 
-function addClickHandler (argument) {
+function getContainer() {
+	return document.getElementById('list');
+}
+
+function addClickHandler(argument) {
 	var description = getDescription();
 	tasks.push(description);
 	displayTasks(tasks);
 }
 
-function clearClickHandler (argument) {	
-	var container = document.getElementById('list');
+function clearClickHandler(argument) {	
+	var container = getContainer();
 	container.innerHTML = null;	
 }
 
@@ -38,15 +42,13 @@ function changeStatus(event) {
 	
 }
 
-function displayTasks (tasks) {  
+function displayTasks(tasks) {  
 	
 	var taskDescription = tasks[tasks.length-1];
 
-	var container = document.getElementById('list');
-
 	var changeStatusAction = document.createElement('input');
 	changeStatusAction.type = "checkbox";
-	changeStatusAction.onclick=changeStatus;
+	changeStatusAction.onclick = changeStatus;
 
 	var description = document.createElement('span');
 	description.innerHTML = taskDescription;
@@ -54,12 +56,13 @@ function displayTasks (tasks) {
 	var deleteAction = document.createElement('input');
 	deleteAction.type = "button";
 	deleteAction.value = "x";
-	deleteAction.onclick=del;
+	deleteAction.onclick = del;
 	
 	var task = document.createElement('p');	
 	task.appendChild(changeStatusAction);
 	task.appendChild(description);
 	task.appendChild(deleteAction);
 	
+	var container = getContainer();
 	container.appendChild(task);	
 }
