@@ -1,0 +1,9 @@
+#list p.active {
+	color: red;	
+	text-decoration: none;
+}
+
+#list p.completed {
+	color: grey;	
+	text-decoration: line-through;
+}

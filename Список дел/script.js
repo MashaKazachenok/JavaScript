@@ -162,15 +162,8 @@ function changeStatus(event) {
 	
 	var status = event.target;
 	
-	// TODO: don't change style attributes, use css classes
-	if(status.checked) {
-		desription.style.color = "grey";	
-		desription.style.textDecoration = 'line-through';	
-	} else {
-		desription.style.color = "black";
-		desription.style.textDecoration = '';			
-	}
-	
+	task.className = (status.checked) ? "completed" : "active";
+			
 	getActiveTaskCount();
 	getCompletedTaskCount();
 }
@@ -194,12 +187,12 @@ function displayTasks(tasks) {
 	//deleteAction.onclick = del;
 	deleteAction.addEventListener("click", del);
 	
-	var task = document.createElement('p');	
+	var task = document.createElement('p');
+	task.className = "active";
 	task.appendChild(changeStatusAction);
 	task.appendChild(description);
 	task.appendChild(deleteAction);
 	
-
 	var container = getContainer();
 	container.appendChild(task);
 	//container.appendChild(finStroka);
