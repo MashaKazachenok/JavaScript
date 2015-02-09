@@ -4,6 +4,7 @@ function vvod() {
 	if(event.keyCode == 13){
 		addClickHandler();
 		displayPodval();
+		getActiveTaskCount();
 	};
 }
 
@@ -16,6 +17,7 @@ function addClickHandler(argument) {
 function getDescription() {
 	return getInput().value;
 }
+
 
 function getInput() {
 	return document.getElementById('task');
@@ -100,7 +102,7 @@ function clearCompleted(event) {
 		{
 			removeTasks.push(task);
 		}
-	};
+	}
 
 	// удаляем завершенные задачи
 	for (var i = 0; i < removeTasks.length; i++) {
@@ -134,6 +136,7 @@ function changeStatus(event) {
 		desription.style.textDecoration = '';			
 	}
 	
+	getActiveTaskCount()
 }
 
 function displayTasks(tasks) {  
@@ -151,6 +154,7 @@ function displayTasks(tasks) {
 	var deleteAction = document.createElement('input');
 	deleteAction.type = "button";
 	deleteAction.value = "x";
+	//delete
 	//deleteAction.onclick = del;
 	deleteAction.addEventListener("click", del);
 	
@@ -166,6 +170,29 @@ function displayTasks(tasks) {
 
 }
 
+function  getActiveTaskCount() {
+	console.log('getActiveTaskCount');
+
+	var container = getContainer();
+
+	var tasks = container.children;	
+
+	var activeTasks = [];
+
+	// находим завершенные задачи 
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+		var completed = task.children[0].checked;
+		
+		if (!completed)
+		{
+			activeTasks.push(task);
+		}		
+	}
+
+	document.getElementById('count').innerHTML = activeTasks.length;
+}
+
 function displayPodval () {
 	var container = getContainer();
 
@@ -178,11 +205,11 @@ function displayPodval () {
 
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
-
+   
 	document.getElementById('clearCompleted').addEventListener('click', clearCompleted);
 	document.getElementById('showCompleted').addEventListener('click', showCompleted);
 	document.getElementById('showActive').addEventListener('click', showActive);
 	document.getElementById('showAll').addEventListener('click', showAll);
-
+	getActiveTaskCount();
 	displayPodval();
 }
