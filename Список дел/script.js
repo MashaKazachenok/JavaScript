@@ -86,6 +86,7 @@ function showActive() {
 
 	var completedTasks = arrGetCompleted();
 	setDisplayForTasks(completedTasks, "none");
+
 }
 
 function setDisplayForTasks(tasks, display) {
@@ -182,12 +183,15 @@ function displayPodval () {
 	var container = getContainer();
 
 	var tasks = container.children;
+	tasks.className = "act";
 
 	var display = (tasks.length > 0) ? '' : 'none';
 
 	document.getElementById('podval').style.display = display;
 }
 
+
+ 
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
 
@@ -198,4 +202,5 @@ window.onload = function(){
 	getCompletedTaskCount();
 	getActiveTaskCount();
 	displayPodval();
+
 }

@@ -7,3 +7,19 @@
 	color: grey;	
 	text-decoration: line-through;
 }
+
+ .Btn:hover {
+    background:yellow;
+    
+  }
+.Btn{
+    background: gray;
+}
+ 
+.hvr{
+    background: green;
+}
+ 
+.act{
+    background: red !important;
+}
