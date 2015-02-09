@@ -35,15 +35,10 @@ function clearClickHandler(argument) {
 }
 
 function showAll(event) {
-	var container = getContainer();
-
-	var tasks = container.children;
-
-	for (var i = 0; i < tasks.length; i++) {
-		var task = tasks[i];
-
-		task.style.display = "";
-	}			
+	var activeTasks = arrGetActive();
+	setDisplayForTasks(activeTasks, "");	
+	var completedTasks = arrGetCompleted();
+	setDisplayForTasks(completedTasks, "");			
 }
 
 function arrGetActive (event) {
@@ -57,7 +52,7 @@ function arrGetActive (event) {
 		var task = tasks[i];
 		var completed = task.children[0].checked;
 		
-		if (completed)
+		if (!completed)
 		{
 			activeTasks.push(task);
 		}
@@ -69,7 +64,6 @@ function arrGetActive (event) {
 function arrGetCompleted (event) {
 
 	var container = getContainer();
-
 	var tasks = container.children;
 	var completedTasks = [];
 
@@ -77,7 +71,7 @@ function arrGetCompleted (event) {
 		var task = tasks[i];
 		var completed = task.children[0].checked;
 		
-		if (!completed)
+		if (completed)
 		{
 			completedTasks.push(task);
 		}
@@ -88,10 +82,10 @@ function arrGetCompleted (event) {
 
 function showActive() {
 	var activeTasks = arrGetActive();
-	setDisplayForTasks(activeTasks, "none");
+	setDisplayForTasks(activeTasks, "");
 
 	var completedTasks = arrGetCompleted();
-	setDisplayForTasks(completedTasks, "");
+	setDisplayForTasks(completedTasks, "none");
 }
 
 function setDisplayForTasks(tasks, display) {
@@ -100,50 +94,22 @@ function setDisplayForTasks(tasks, display) {
 	}
 }
 
-function showCompleted(event) {
+function showCompleted() {
+	var activeTasks = arrGetActive();
+	setDisplayForTasks(activeTasks, "none");
 
-	var container = getContainer();
-
-	var tasks = container.children;
-
-	for (var i = 0; i < tasks.length; i++) {
-		var task = tasks[i];
-
-		var completed = task.children[0].checked;
-
-		if (!completed)
-		{
-			task.style.display = "none";
-		} else {
-			task.style.display = "";
-		}
-	}
+	var completedTasks = arrGetCompleted();
+	setDisplayForTasks(completedTasks, "");
 }
 
-function clearCompleted(event) {
+function clearCompleted() {
 	var container = getContainer();
-
-	var tasks = container.children;	
-
-	var removeTasks = [];
-
-	// находим завершенные задачи 
-	for (var i = 0; i < tasks.length; i++) {
-		var task = tasks[i];
-
-		var completed = task.children[0].checked;
-
-		if (completed)
-		{
-			removeTasks.push(task);
-		}
-	}
-
+	var completedTasks = arrGetCompleted();
+	
 	// удаляем завершенные задачи
-	for (var i = 0; i < removeTasks.length; i++) {
-		container.removeChild(removeTasks[i])
-	};
-
+	for (var i = 0; i < completedTasks.length; i++) {
+		container.removeChild(completedTasks[i])
+	}
 	displayPodval();
 }
 
@@ -174,7 +140,6 @@ function displayTasks(tasks) {
 
 	var changeStatusAction = document.createElement('input');
 	changeStatusAction.type = "checkbox";
-	//changeStatusAction.onclick = changeStatus;
 	changeStatusAction.addEventListener("click", changeStatus);
 
 	var description = document.createElement('span');
@@ -184,7 +149,6 @@ function displayTasks(tasks) {
 	deleteAction.type = "button";
 	deleteAction.value = "x";
 	//delete
-	//deleteAction.onclick = del;
 	deleteAction.addEventListener("click", del);
 	
 	var task = document.createElement('p');
@@ -195,50 +159,19 @@ function displayTasks(tasks) {
 	
 	var container = getContainer();
 	container.appendChild(task);
-	//container.appendChild(finStroka);
 
 }
 
 function  getActiveTaskCount() {
-	var container = getContainer();
-
-	var tasks = container.children;	
-
-	var activeTasks = [];
-
-	// находим завершенные задачи 
-	for (var i = 0; i < tasks.length; i++) {
-		var task = tasks[i];
-		var completed = task.children[0].checked;
-		
-		if (!completed)
-		{
-			activeTasks.push(task);
-		}		
-	}
-
+ 	var container = getContainer();
+	var activeTasks = arrGetActive();
+	
 	document.getElementById('count').innerHTML = activeTasks.length;
 }
 
 function  getCompletedTaskCount() {
-	//console.log('getActiveTaskCount');
-
-	var container = getContainer();
-
-	var tasks = container.children;	
-
-	var completedTasks = [];
-
-	// находим завершенные задачи 
-	for (var i = 0; i < tasks.length; i++) {
-		var task = tasks[i];
-		var completed = task.children[0].checked;
-		
-		if (completed)
-		{
-			completedTasks.push(task);
-		}		
-	}
+	
+	var completedTasks = arrGetCompleted();
 
 	var description = document.getElementById('clearCompleted').attributes['data-description'].value;
 
