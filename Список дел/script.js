@@ -31,15 +31,55 @@ function clearClickHandler(argument) {
 }
 
 function showAll(event) {
-	
+var container = getContainer();
+
+	var tasks = container.children;
+
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+
+		task.style.display = "";
+	}			
 }
 
 function showActive(event) {
-	
+
+var container = getContainer();
+
+	var tasks = container.children;
+
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+
+		var completed = task.children[0].checked;
+
+		if (completed)
+		{
+			task.style.display = "none";
+		} else {
+			task.style.display = "";
+		}
+	}		
 }
 
 function showCompleted(event) {
-	
+
+var container = getContainer();
+
+	var tasks = container.children;
+
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+
+		var completed = task.children[0].checked;
+
+		if (!completed)
+		{
+			task.style.display = "none";
+		} else {
+			task.style.display = "";
+		}
+	}
 }
 
 function clearCompleted(event) {
@@ -124,5 +164,8 @@ function displayTasks(tasks) {
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
 
-	document.getElementById('clearCompleted').addEventListener('click', clearCompleted)
+	document.getElementById('clearCompleted').addEventListener('click', clearCompleted);
+	document.getElementById('showCompleted').addEventListener('click', showCompleted);
+	document.getElementById('showActive').addEventListener('click', showActive);
+	document.getElementById('showAll').addEventListener('click', showAll);
 }
