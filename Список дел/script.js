@@ -2,7 +2,8 @@ var tasks = [];
 
 function vvod() {
 	if(event.keyCode == 13){
-		addClickHandler()
+		addClickHandler();
+		displayPodval();
 	};
 }
 
@@ -83,7 +84,7 @@ var container = getContainer();
 }
 
 function clearCompleted(event) {
-var container = getContainer();
+	var container = getContainer();
 
 	var tasks = container.children;	
 
@@ -105,6 +106,8 @@ var container = getContainer();
 	for (var i = 0; i < removeTasks.length; i++) {
 		container.removeChild(removeTasks[i])
 	};
+
+	displayPodval();
 }
 
 
@@ -112,6 +115,8 @@ function del(event) {
 	var task = event.target.parentNode;
 	var container = task.parentNode;
 	container.removeChild(task);
+
+	displayPodval();
 }
 
 function changeStatus(event) {
@@ -161,6 +166,16 @@ function displayTasks(tasks) {
 
 }
 
+function displayPodval () {
+	var container = getContainer();
+
+	var tasks = container.children;
+
+	var display = (tasks.length > 0) ? '' : 'none';
+
+	document.getElementById('podval').style.display = display;
+}
+
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
 
@@ -168,4 +183,6 @@ window.onload = function(){
 	document.getElementById('showCompleted').addEventListener('click', showCompleted);
 	document.getElementById('showActive').addEventListener('click', showActive);
 	document.getElementById('showAll').addEventListener('click', showAll);
+
+	displayPodval();
 }
