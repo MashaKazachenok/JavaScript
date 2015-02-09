@@ -31,53 +31,40 @@ function clearClickHandler(argument) {
 }
 
 function showAll(event) {
-	var lastRow = event.target.parentNode;
-	var task = lastRow.parentNode;
-	var desription = task.children[0];
-	var status = event.target;
-	var status = desription.children[0];
-	if(status.checked) {
-		desription.style.display  = "";	
-		
-	} else {
-		desription.style.display  = "";			
-	}
+	
 }
 
 function showActive(event) {
-	var lastRow = event.target.parentNode;
-	var task = lastRow.parentNode;
-	var desription = task.children[0];
-	var status = desription.children[0];
-	if(status.checked) {
-		desription.style.display = "none";	
-		
-	} else {
-		desription.style.display  = "";			
-	}
+	
 }
 
 function showCompleted(event) {
-	var lastRow = event.target.parentNode;
-	var task = lastRow.parentNode;
-	var desription = task.children[0];
-	var status = desription.children[0];
-	if(status.checked) {
-		desription.style.display  = "";	
-		
-	} else {
-		desription.style.display  = "none";			
-	}
+	
 }
 
 function clearCompleted(event) {
-	var lastRow = event.target.parentNode;
-	var task = lastRow.parentNode;
-	var desription = task.children[0];
-	var status = desription.children[0];
-	if(status.checked) {
-		desription.innerHTML = "";				
-	}
+var container = getContainer();
+
+	var tasks = container.children;	
+
+	var removeTasks = [];
+
+	// находим завершенные задачи 
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+
+		var completed = task.children[0].checked;
+
+		if (completed)
+		{
+			removeTasks.push(task);
+		}
+	};
+
+	// удаляем завершенные задачи
+	for (var i = 0; i < removeTasks.length; i++) {
+		container.removeChild(removeTasks[i])
+	};
 }
 
 
@@ -127,41 +114,15 @@ function displayTasks(tasks) {
 	task.appendChild(description);
 	task.appendChild(deleteAction);
 	
-	var kol = document.createElement('span');
-	kol.innerHTML = "item left";
-
-	var all = document.createElement('input');
- 	all.type = "button";
- 	all.value = "All"; 
- 	all.addEventListener("click", showAll);
-
-	var active = document.createElement('input');
- 	active.type = "button";
- 	active.value = "Active";
- 	active.addEventListener("click", showActive);
-
- 	var completed = document.createElement('input');
- 	completed.type = "button";
- 	completed.value = "Completed"; 
- 	completed.addEventListener("click", showCompleted);
-
- 	var clear = document.createElement('input');
- 	clear.type = "button";
- 	clear.value = "Clear completed";
- 	clear.addEventListener("click", clearCompleted);
-
-	var finStroka = document.createElement('p');	
-	finStroka.appendChild(kol);
-	finStroka.appendChild(all);
-	finStroka.appendChild(active);
-	finStroka.appendChild(completed);
-	finStroka.appendChild(clear);
 
 	var container = getContainer();
 	container.appendChild(task);
-	container.appendChild(finStroka);	
+	//container.appendChild(finStroka);
+
 }
 
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
+
+	document.getElementById('clearCompleted').addEventListener('click', clearCompleted)
 }
