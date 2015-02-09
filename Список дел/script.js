@@ -35,7 +35,7 @@ function clearClickHandler(argument) {
 }
 
 function showAll(event) {
-var container = getContainer();
+	var container = getContainer();
 
 	var tasks = container.children;
 
@@ -46,29 +46,63 @@ var container = getContainer();
 	}			
 }
 
-function showActive(event) {
+function arrGetActive (event) {
 
-var container = getContainer();
+	var container = getContainer();
 
 	var tasks = container.children;
+	var activeTasks = [];
+	
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+		var completed = task.children[0].checked;
+		
+		if (completed)
+		{
+			activeTasks.push(task);
+		}
+	}	
+
+	return activeTasks;
+}
+
+function arrGetCompleted (event) {
+
+	var container = getContainer();
+
+	var tasks = container.children;
+	var completedTasks = [];
 
 	for (var i = 0; i < tasks.length; i++) {
 		var task = tasks[i];
-
 		var completed = task.children[0].checked;
-
-		if (completed)
+		
+		if (!completed)
 		{
-			task.style.display = "none";
-		} else {
-			task.style.display = "";
+			completedTasks.push(task);
 		}
-	}		
+	}	
+
+	return completedTasks;
+}
+
+function showActive() {
+	var activeTasks = arrGetActive();
+	setDisplayForTasks(activeTasks, "none");
+
+	var completedTasks = arrGetCompleted();
+	setDisplayForTasks(completedTasks, "");
+}
+
+function setDisplayForTasks(tasks, display) {
+	for (var i = 0; i < tasks.length; i++) {
+		tasks[i].style.display = display;
+	}
 }
 
 function showCompleted(event) {
 
-var container = getContainer();
+	var container = getContainer();
 
 	var tasks = container.children;
 
@@ -173,8 +207,6 @@ function displayTasks(tasks) {
 }
 
 function  getActiveTaskCount() {
-	console.log('getActiveTaskCount');
-
 	var container = getContainer();
 
 	var tasks = container.children;	
@@ -232,7 +264,7 @@ function displayPodval () {
 
 window.onload = function(){
 	getInput().addEventListener("keydown", vvod);	
-   
+
 	document.getElementById('clearCompleted').addEventListener('click', clearCompleted);
 	document.getElementById('showCompleted').addEventListener('click', showCompleted);
 	document.getElementById('showActive').addEventListener('click', showActive);
