@@ -5,6 +5,7 @@ function vvod() {
 		addClickHandler();
 		displayPodval();
 		getActiveTaskCount();
+		getCompletedTaskCount();
 	};
 }
 
@@ -136,7 +137,8 @@ function changeStatus(event) {
 		desription.style.textDecoration = '';			
 	}
 	
-	getActiveTaskCount()
+	getActiveTaskCount();
+	getCompletedTaskCount();
 }
 
 function displayTasks(tasks) {  
@@ -193,6 +195,31 @@ function  getActiveTaskCount() {
 	document.getElementById('count').innerHTML = activeTasks.length;
 }
 
+function  getCompletedTaskCount() {
+	//console.log('getActiveTaskCount');
+
+	var container = getContainer();
+
+	var tasks = container.children;	
+
+	var completedTasks = [];
+
+	// находим завершенные задачи 
+	for (var i = 0; i < tasks.length; i++) {
+		var task = tasks[i];
+		var completed = task.children[0].checked;
+		
+		if (completed)
+		{
+			completedTasks.push(task);
+		}		
+	}
+
+	var description = document.getElementById('clearCompleted').attributes['data-description'].value;
+
+	document.getElementById('clearCompleted').value = description + completedTasks.length;
+}
+
 function displayPodval () {
 	var container = getContainer();
 
@@ -210,6 +237,7 @@ window.onload = function(){
 	document.getElementById('showCompleted').addEventListener('click', showCompleted);
 	document.getElementById('showActive').addEventListener('click', showActive);
 	document.getElementById('showAll').addEventListener('click', showAll);
+	getCompletedTaskCount();
 	getActiveTaskCount();
 	displayPodval();
 }
