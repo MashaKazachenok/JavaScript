@@ -9,7 +9,7 @@ function vvod() {
 	};
 }
 
-function addClickHandler(argument) {
+function addClickHandler() {
 	var description = getDescription();
 	tasks.push(description);
 	displayTasks(tasks);
@@ -35,6 +35,9 @@ function clearClickHandler(argument) {
 }
 
 function showAll(event) {
+	setInactiveStyleAllButton();
+	var but = event.target;
+	but.className = "act";
 	var activeTasks = arrGetActive();
 	setDisplayForTasks(activeTasks, "");	
 	var completedTasks = arrGetCompleted();
@@ -42,9 +45,9 @@ function showAll(event) {
 }
 
 function arrGetActive (event) {
+	
 
 	var container = getContainer();
-
 	var tasks = container.children;
 	var activeTasks = [];
 	
@@ -62,7 +65,7 @@ function arrGetActive (event) {
 }
 
 function arrGetCompleted (event) {
-
+	
 	var container = getContainer();
 	var tasks = container.children;
 	var completedTasks = [];
@@ -80,8 +83,13 @@ function arrGetCompleted (event) {
 	return completedTasks;
 }
 
-function showActive() {
+function showActive(event) {
+	setInactiveStyleAllButton();
+	but = event.target;
+	but.className = "act";
 	var activeTasks = arrGetActive();
+	//activeTasks.className = "act";
+	//console.log(activeTasks);
 	setDisplayForTasks(activeTasks, "");
 
 	var completedTasks = arrGetCompleted();
@@ -95,7 +103,18 @@ function setDisplayForTasks(tasks, display) {
 	}
 }
 
+function setInactiveStyleAllButton () {
+	var activeButton =  document.querySelector('input.act');
+
+	if (activeButton) {
+	activeButton.className = "Btn";	
+	}
+}
+
 function showCompleted() {
+	setInactiveStyleAllButton();
+	var but = event.target;
+	but.className = "act";
 	var activeTasks = arrGetActive();
 	setDisplayForTasks(activeTasks, "none");
 
@@ -119,7 +138,7 @@ function del(event) {
 	var task = event.target.parentNode;
 	var container = task.parentNode;
 	container.removeChild(task);
-
+	getActiveTaskCount()
 	displayPodval();
 }
 
@@ -164,7 +183,7 @@ function displayTasks(tasks) {
 }
 
 function  getActiveTaskCount() {
- 	var container = getContainer();
+ 	
 	var activeTasks = arrGetActive();
 	
 	document.getElementById('count').innerHTML = activeTasks.length;
@@ -180,10 +199,9 @@ function  getCompletedTaskCount() {
 }
 
 function displayPodval () {
-	var container = getContainer();
 
+	var container = getContainer();
 	var tasks = container.children;
-	tasks.className = "act";
 
 	var display = (tasks.length > 0) ? '' : 'none';
 
