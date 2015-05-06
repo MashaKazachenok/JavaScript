@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app>
+<head>
+  <script src="https://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <div ng-controller="TodoCtrl">
+    <ul class="unstyled">
+      <li ng-repeat="todo in todoList">
+        <input type="checkbox" ng-model="todo.done">
+         <span class="done-{{todo.done}}">{{todo.text}}</span>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
