@@ -2,3 +2,12 @@
   text-decoration: line-through;
   color: grey;
 }
+
+.completed{
+ 
+  display: none;
+}
+
+.active {
+  display: "";
+}

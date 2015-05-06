@@ -19,6 +19,17 @@ function TodoCtrl($scope){
 		});
 	};
 
+	$scope.getActive = function(){
+		
+		
+	};
+
+	$scope.getCompleted = function()
+	{
+		
+		
+	};
+
 	$scope.getAllTask = function()
 	{
 		return $scope.todoList.length;
