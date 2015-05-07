@@ -1,46 +1,52 @@
  var example = angular.module("example", ["ngStorage"]);
-            example.controller("ExampleController", function($scope, $localStorage) {
- 
+ example.controller("ExampleController", function($scope, $localStorage) {
 
-	$scope.todoList =   
-	[
-	{ text:$localStorage.text, done:$localStorage.done }
 
-	];
+	//$scope.todoList = $localStorage.todoList; 
+ 	$scope.todoList = JSON.parce(window.localStorage.get("todoList"));
+ 	
 
-	$scope.addTask = function()
-	{
-		$scope.todoList.push({text:$scope.newTask, done:false});
-		
-	    $localStorage.text = $scope.newTask;
-	    $localStorage.done =  false;
+ 	$scope.addTask = function()
+ 	{
+ 		$scope.todoList.push({text:$scope.newTask, done:false});
 
-	    $scope.newTask= "";
-	};
-	
 
-	$scope.clearCompleted = function()
-	{
-		$scope.todoList = _.filter($scope.todoList, function(todo){
-			return !todo.done;
-		});
-	};
+ 		var todoList = {
+ 			text: $scope.newTask,
+ 			done: false
+ 		}
 
-	$scope.getActive = function(){
-		
-		
-	};
+ 		//$localStorage.todoList = todoList;
+ 		window.localStorage.set("todoList", JSON.stringify(todoList));
+ 		$scope.newTask= "";
+ 	};
 
-	$scope.getCompleted = function()
-	{
-		
-		
-	};
+ 	$scope.changeCheckbox = function(){  
+ 		
+ 	};
 
-	$scope.getAllTask = function()
-	{
-		return $scope.todoList.length;
-	};
-	
-	
-});
+ 	$scope.clearCompleted = function()
+ 	{
+ 		$scope.todoList = _.filter($scope.todoList, function(todo){
+ 			return !todo.done;
+ 		});
+ 	};
+
+ 	$scope.getActive = function(){
+
+
+ 	};
+
+ 	$scope.getCompleted = function()
+ 	{
+
+
+ 	};
+
+ 	$scope.getAllTask = function()
+ 	{
+ 		return $scope.todoList.length;
+ 	};
+
+
+ });

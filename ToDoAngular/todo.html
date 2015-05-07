@@ -16,7 +16,7 @@
    </div>
    <ul class="unstyled">
     <li ng-repeat="todo in todoList">
-      <input type="checkbox" ng-model="todo.done">
+      <input type="checkbox" ng-click="changeCheckbox()"  ng-model="todo.done">
       <span class="done-{{todo.done}}" >{{todo.text}}</span>
     </li>
   </ul>
