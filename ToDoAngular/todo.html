@@ -16,15 +16,12 @@
    </div>
    <ul class="unstyled">
     <li ng-repeat="todo in todoList">
-      <input type="checkbox" ng-click="changeCheckbox()"  ng-model="todo.done">
-      <span class="done-{{todo.done}}" >{{todo.text}}</span>
+      <input type="checkbox" ng-model="todo.done">
+      <span class="done-{{todo.done}}" > {{todo.text}}</span>
     </li>
   </ul>
   <div>
-    <span>all tasks: {{getAllTask()}}</span>
-    <input class="btn" ng-click="all"  type="button" value="All">
-    <input class="btn" ng-model="getActive()"  type="button" value="Active">
-    <input  class="btn" ng-model="getCompleted()"  type="button" value="Completed">
+    <span></span>
     <button class="btn" ng-click="clearCompleted()">Clear Completed </button>
   </div>
 </div>
