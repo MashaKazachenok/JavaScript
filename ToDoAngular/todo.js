@@ -1,16 +1,23 @@
-function TodoCtrl($scope){
+ var example = angular.module("example", ["ngStorage"]);
+            example.controller("ExampleController", function($scope, $localStorage) {
+ 
 
-	$scope.todoList =
+	$scope.todoList =   
 	[
-	{ text:'go', done:false }
+	{ text:$localStorage.text, done:$localStorage.done }
 
 	];
 
 	$scope.addTask = function()
 	{
 		$scope.todoList.push({text:$scope.newTask, done:false});
-		$scope.newTask= "";
+		
+	    $localStorage.text = $scope.newTask;
+	    $localStorage.done =  false;
+
+	    $scope.newTask= "";
 	};
+	
 
 	$scope.clearCompleted = function()
 	{
@@ -36,4 +43,4 @@ function TodoCtrl($scope){
 	};
 	
 	
-}
+});

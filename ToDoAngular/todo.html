@@ -1,13 +1,14 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="example">
 <head>
   <script src="https://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
     <script src="https://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script src="ngStorage.min.js"></script>
   <script src="todo.js"></script>
   <link rel="stylesheet" href="todo.css">
 </head>
 <body>
-  <div ng-controller="TodoCtrl">
+  <div ng-controller="ExampleController">
     <h3>To Do</h3>
     <div>
      <input type="text" ng-model="newTask" ng-model-instant>
