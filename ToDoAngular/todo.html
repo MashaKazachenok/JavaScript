@@ -1,8 +1,8 @@
 <!doctype html>
 <html ng-app="example">
 <head>
-  <script src="https://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
-    <script src="https://documentcloud.github.com/underscore/underscore-min.js"></script>
+  <script src="angular.min.js"></script>
+    <script src="underscore.min.js"></script>
     <script src="ngStorage.min.js"></script>
   <script src="todo.js"></script>
   <link rel="stylesheet" href="todo.css">
@@ -16,7 +16,7 @@
    </div>
    <ul class="unstyled">
     <li ng-repeat="todo in todoList">
-      <input type="checkbox" ng-model="todo.done">
+      <input type="checkbox" ng-change="changeCheckbox()" ng-model="todo.done">
       <span class="done-{{todo.done}}" > {{todo.text}}</span>
     </li>
   </ul>
